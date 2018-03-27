@@ -1,4 +1,2 @@
 <?php
-/**
- * Created: 27/03/2018 21:05
- */
+define('CBW_QUIZZ', TRUE);
