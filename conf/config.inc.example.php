@@ -12,4 +12,14 @@ $conf->setDbUser("root");
 $conf->setDbPass("changeme");
 $conf->setDbPort(3306);
 
+$conf->setLogDebug(true);
+$conf->setLogInfo(true);
+$conf->setLogWarning(true);
+$conf->setLogError(true);
+$conf->setLogFatal(true);
+
+$conf->setSessionName("cbw_quizz");
+$conf->setCookieName("cbw_quizz");
+
+log::info("Config load successfully.");
 unset($conf);

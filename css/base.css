@@ -1,0 +1,70 @@
+/*
+    --breakpoint-xs: 0;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px;
+*/
+body {
+    font-family: "Open Sans", Arial;
+}
+#main_content {
+    border: 1px solid #6c757d;
+    border-radius: 20px;
+    margin: 15px auto;
+    padding: 0 15px;
+}
+#main_content #stats {
+    border-left: 1px solid #6c757d;
+    padding: 15px 10px;
+}
+#main_content #content {
+    padding: 15px 10px;
+    min-height: 300px;
+}
+#main_content #quizz_title {
+    border-bottom: 1px solid #6c757d;
+    padding-bottom: 15px;
+}
+#main_content #quizz_question {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #6c757d;
+    margin-bottom:20px;
+}
+#main_content #quizz_controls {
+    border-top: 1px solid #6c757d;
+    padding-top: 20px;
+    margin-top:20px;
+}
+#main_content #ask_user_name {
+    margin: 10px 0;
+}
+.bg-dark a.dropdown-item {
+    color: #fff;
+}
+#toggle_log {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+@media (max-width: 1199px) {
+
+}
+@media (max-width: 991px) {
+
+}
+
+@media (max-width: 767px) {
+    #main_content #stats {
+        border-top: 1px solid #6c757d;
+        border-left: 0;
+    }
+    #main_content {
+        width: 96%;
+    }
+}
+
+@media (max-width: 575px) {
+
+}

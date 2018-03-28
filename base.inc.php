@@ -9,6 +9,36 @@ defined('CBW_QUIZZ') or die();
 
 # load classes
 require_once "class/config.class.php";
+require_once "class/user_session.class.php";
+# load utility
+require_once "util/log.class.php";
+require_once "util/db.class.php";
+require_once "util/queryhelper.class.php";
+
 
 # load config
 require "conf/config.inc.php";
+
+# init connection to database
+db::getInstance();
+
+# user session
+/** @var user_session $user */
+$user = null;
+session_start();
+
+if(user_session::userSessionAviable()){
+    log::debug("UserSession found, loading it...");
+    $user = user_session::loadByToken();
+    log::debug("UserSession loaded.");
+} else {
+    log::debug("UserSession not found, generate one.");
+    $user = user_session::generateNewSession();
+    log::debug("UserSession generated.");
+    $_SESSION[config::getInstance()->getSessionName()]["token"] = $user->getToken();
+}
+
+
+
+
+
