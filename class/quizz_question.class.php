@@ -5,11 +5,16 @@
 
 class quizz_question
 {
+    public const TABLE = "quizz_questions";
+
     /** @var int */
     private $id;
 
     /** @var string */
     private $question_title;
+
+    /** @var string */
+    private $question_text;
 
     /** @var quizz_answer[] */
     private $answers = [];
@@ -73,4 +78,13 @@ class quizz_question
         $this->area = $area;
     }
 
+    /** @return string */
+    public function getQuestionText(): string {
+        return $this->question_text;
+    }
+
+    /** @param string $question_text */
+    public function setQuestionText(string $question_text): void {
+        $this->question_text = $question_text;
+    }
 }
