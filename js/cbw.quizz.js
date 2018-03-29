@@ -7,14 +7,27 @@ $(document).ready(function () {
       }
     });
 
+    // Save username
     $('#save_user_name').click(function () {
         var savename =  $('#save_name').is(':checked') ? "1" : "0";
         $.get("api.php", {action: "savename", username:$('#username').val(), save_name: savename})
            .done(function (data) {
-               console.log(data);
                if(data === "OK"){
                    $('#ask_user_name').fadeOut(500);
                }
            });
     });
+
+    // Save no username
+    $('#save_noname').click(function () {
+        $.get("api.php", {action: "noname"})
+            .done(function (data) {
+                console.log(data);
+                if(data === "OK"){
+                    $('#ask_user_name').fadeOut(500);
+                }
+            });
+    });
+
+
 });

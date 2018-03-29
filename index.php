@@ -37,17 +37,17 @@ define('CBW_QUIZZ', TRUE);
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
+                <a class="nav-link" href="index.php">Home</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Quizz Typ</a>
+                <a class="nav-link dropdown-toggle" href="javascript:;" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Quizz Typ</a>
                 <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">WISO</a>
-                    <a class="dropdown-item" href="#">KERN 1</a>
-                    <a class="dropdown-item" href="#">KERN 2</a>
+                    <a class="dropdown-item" href="javascript:;">WISO</a>
+                    <a class="dropdown-item" href="javascript:;">KERN 1</a>
+                    <a class="dropdown-item" href="javascript:;">KERN 2</a>
                 </div>
             </li>
-            <li class="nav-item disabled">
+            <li class="nav-item disabled d-none">
                 <a class="nav-link" href="#">Klassen Quizz</a>
             </li>
         </ul>
@@ -81,7 +81,7 @@ define('CBW_QUIZZ', TRUE);
                 <button id="save_user_name" class="btn btn-success" type="button">Speichern</button>
             </div>
             <div class="input-group-append">
-                <button class="btn btn-danger" type="button">Kein Name speichern</button>
+                <button id="save_noname" class="btn btn-danger" type="button">Kein Name speichern</button>
             </div>
         </div>
     </div>

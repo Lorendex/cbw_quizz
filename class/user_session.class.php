@@ -221,7 +221,9 @@ class user_session
     }
 
     private static function hasSavedNameInCookie(){
-
+        if(isset($_COOKIE) && isset($_COOKIE[config::getInstance()->getCookieName()]))
+            return true;
+        return false;
     }
 
     /**

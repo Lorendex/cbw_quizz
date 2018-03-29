@@ -18,10 +18,11 @@ switch (strtolower($action)){
         }
         echo "OK";
     } break;
+
     case "noname": {
         setcookie("CBW_NO_NAME", 1, time()+3600*24*30);
         echo "OK";
-    }
+    } break;
 
     default: echo "ERROR:UNKNOWN_ACTION"; break;
 }
