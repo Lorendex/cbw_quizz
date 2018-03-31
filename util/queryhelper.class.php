@@ -5,6 +5,8 @@
 
 abstract class queryhelper
 {
+    /********************************************* USER SESSION QUERYS ************************************************/
+
     public static function USER_SESSION_CREATE(): string{
        $query = "INSERT INTO ".user_session::TABLE." (ID, token, username, lastactive, lastquestion) VALUES (NULL, UUID(), :username, NOW(), 0 );";
        log::debug("QUERYHELPER: " . $query);
@@ -22,6 +24,32 @@ abstract class queryhelper
     }
     public static function USER_SESSION_UPDATE_NAME(): string {
         $query = "UPDATE ".user_session::TABLE." SET username = :username WHERE ID = :id;";
+        log::debug("QUERYHELPER: " . $query);
+        return $query;
+    }
+
+    /******************************************** QUESTION QUERYS *****************************************************/
+    public static function QUESTION_BY_ID(): string {
+        $query = "SELECT * FROM ".quizz_question::TABLE." WHERE ID = :id;";
+        log::debug("QUERYHELPER: " . $query);
+        return $query;
+    }
+
+    public static function QUESTIONS_ALL(): string {
+        $query = "SELECT * FROM ".quizz_question::TABLE.";";
+        log::debug("QUERYHELPER: " . $query);
+        return $query;
+    }
+
+    /******************************************** ANSWER QUERYS *******************************************************/
+    public static function ANSWER_BY_ID(): string {
+        $query = "SELECT * FROM ".quizz_answer::TABLE." WHERE ID = :id;";
+        log::debug("QUERYHELPER: " . $query);
+        return $query;
+    }
+
+    public static function ANSWERS_BY_QUESTION_ID(): string {
+        $query = "SELECT * FROM ".quizz_answer::TABLE." WHERE qID = :qid;";
         log::debug("QUERYHELPER: " . $query);
         return $query;
     }

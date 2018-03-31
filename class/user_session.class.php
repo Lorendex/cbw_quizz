@@ -5,7 +5,7 @@
 
 class user_session
 {
-    public const TABLE = "user_sessions";
+    const TABLE = "user_sessions";
     /**
      * @var int
      */

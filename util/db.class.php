@@ -52,6 +52,7 @@ class db
 
         } catch(PDOException $ex) {
             log::FATAL("Could not connect to database.", $ex);
+            die("Could not connect to database.<br>". $ex->getMessage());
         }
         log::info("Successfully connected to database.");
     }

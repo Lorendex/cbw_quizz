@@ -7,9 +7,16 @@ declare(strict_types=1);
 # kill direct requets for base.inc.php
 defined('CBW_QUIZZ') or die();
 
+# load interfaces
+require_once "class/db_entry.interface.php";
+
 # load classes
 require_once "class/config.class.php";
 require_once "class/user_session.class.php";
+require_once "class/quizz_question.class.php";
+require_once "class/quizz_answer.class.php";
+require_once "class/quizz_solo.class.php";
+
 # load utility
 require_once "util/log.class.php";
 require_once "util/db.class.php";
