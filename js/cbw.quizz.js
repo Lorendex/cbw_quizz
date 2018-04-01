@@ -46,6 +46,7 @@ function getNextQuestion(){
 
             //Check answer
             $('#check_question').click(function () {
+                $(this).addClass("disabled");
                 var checked = [];
                $('#quizz_answers input:checked').each(function(){
                    checked.push($(this).val());

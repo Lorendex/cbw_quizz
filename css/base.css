@@ -54,6 +54,9 @@ body {
 .answer_wrong {
     color: #dc3545;
 }
+#quizz_controls #check_question {
+    margin-left: 10px;
+}
 @media (max-width: 1199px) {
 
 }
