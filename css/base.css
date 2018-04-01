@@ -48,6 +48,12 @@ body {
     bottom: 0;
     right: 0;
 }
+.answer_right {
+    color: #28a745;
+}
+.answer_wrong {
+    color: #dc3545;
+}
 @media (max-width: 1199px) {
 
 }

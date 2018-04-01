@@ -17,7 +17,6 @@ require_once "class/quizz_question_area.class.php";
 require_once "class/quizz_question_type.class.php";
 require_once "class/quizz_question.class.php";
 require_once "class/quizz_answer.class.php";
-require_once "class/quizz_solo.class.php";
 
 # load utility
 require_once "util/log.class.php";

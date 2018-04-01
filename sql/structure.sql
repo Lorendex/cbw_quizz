@@ -27,3 +27,15 @@ CREATE TABLE IF NOT EXISTS quizz_answers (
   PRIMARY KEY (ID),
   KEY qID (qID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS quizz_givenanswer (
+  ID int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  qID int(10) UNSIGNED NOT NULL,
+  correct tinyint(1) NOT NULL,
+  sID int(10) UNSIGNED NOT NULL,
+  recived datetime NOT NULL,
+  wrong_answer varchar(100) DEFAULT NULL,
+  PRIMARY KEY (ID),
+  KEY qID (qID),
+  KEY sID (sID)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

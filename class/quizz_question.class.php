@@ -96,6 +96,9 @@ class quizz_question implements db_entry
         $template = str_replace("{title}", $this->getQuestionTitle(), $template);
         $template = str_replace("{question}", $this->getQuestionText(), $template);
         $template = str_replace("{answers}", $this->generateAnswerHTML(), $template);
+        $template = str_replace("{id}", $this->getId(), $template);
+        $template = str_replace("{area}", $this->getArea(), $template);
+        $template = str_replace("{type}", $this->getType(), $template);
         return $template;
     }
 
@@ -109,7 +112,7 @@ class quizz_question implements db_entry
                  * @var $v quizz_answer
                  */
                 $current = str_replace("{answer_text}", $v->getText(), $template);
-                $current = str_replace("{anwser_checkbox_id}", "answer_".$k, $current);
+                $current = str_replace("{answer_checkbox_id}", "answer_".$k, $current);
                 $current = str_replace("{answer_val}", $v->getId(), $current);
                 $answers[] = $current;
             }
@@ -123,7 +126,7 @@ class quizz_question implements db_entry
                  * @var $v quizz_answer
                  */
                 $current = str_replace("{answer_text}", $v->getText(), $template);
-                $current = str_replace("{anwser_checkbox_id}", "answer_".$k, $current);
+                $current = str_replace("{answer_checkbox_id}", "answer_".$k, $current);
                 $current = str_replace("{answer_val}", $v->getId(), $current);
                 $current = str_replace("{answer_group}", "answer_".$this->getId(), $current);
                 $answers[] = $current;

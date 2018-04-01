@@ -33,7 +33,7 @@ INSERT INTO quizz_answers (ID, qID, answer_text, correct) VALUES
   (NULL, '4', 'Antwort 1', '0'),
   (NULL, '4', 'Antwort 2', '1'),
   (NULL, '4', 'Antwort 3', '0'),
-  (NULL, '4', 'Antwort 4', '1'),
+  (NULL, '4', 'Antwort 4', '0'),
 
   (NULL, '5', 'Antwort 1', '0'),
   (NULL, '5', 'Antwort 2', '0'),
@@ -45,7 +45,7 @@ INSERT INTO quizz_answers (ID, qID, answer_text, correct) VALUES
   (NULL, '6', 'Antwort 1', '0'),
   (NULL, '6', 'Antwort 2', '1'),
   (NULL, '6', 'Antwort 3', '0'),
-  (NULL, '6', 'Antwort 4', '1'),
+  (NULL, '6', 'Antwort 4', '0'),
 
   (NULL, '7', 'Antwort 1', '0'),
   (NULL, '7', 'Antwort 2', '0'),
@@ -53,7 +53,7 @@ INSERT INTO quizz_answers (ID, qID, answer_text, correct) VALUES
   (NULL, '7', 'Antwort 4', '1'),
 
   (NULL, '8', 'Antwort 1', '0'),
-  (NULL, '8', 'Antwort 2', '1'),
+  (NULL, '8', 'Antwort 2', '0'),
   (NULL, '8', 'Antwort 3', '0'),
   (NULL, '8', 'Antwort 4', '1'),
   (NULL, '8', 'Antwort 5', '0'),
@@ -67,4 +67,4 @@ INSERT INTO quizz_answers (ID, qID, answer_text, correct) VALUES
   (NULL, '10', 'Antwort 1', '0'),
   (NULL, '10', 'Antwort 2', '1'),
   (NULL, '10', 'Antwort 3', '0'),
-  (NULL, '10', 'Antwort 4', '1');
+  (NULL, '10', 'Antwort 4', '0');
