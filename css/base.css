@@ -43,10 +43,14 @@ body {
 .bg-dark a.dropdown-item {
     color: #fff;
 }
+#toggle_git,
 #toggle_log {
     position: fixed;
     bottom: 0;
     right: 0;
+}
+#toggle_git {
+    right: 45px;
 }
 .answer_right {
     color: #28a745;

@@ -98,6 +98,7 @@ define('CBW_QUIZZ', TRUE);
 </main>
 <!--END CONTENT-->
 <!--START LOG-->
+<div id="toggle_git" class="btn btn-outline-info btn-sm"><?php echo exec('git rev-parse --short HEAD'); ?></div>
 <div id="toggle_log" class="btn btn-outline-info btn-sm">Log</div>
 <pre id="log" class="d-none container"><?php foreach (array_reverse(log::getInstance()->getMessages()) as $msg) { echo $msg; }?></pre>
 <!--END LOG-->
