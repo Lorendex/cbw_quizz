@@ -34,6 +34,11 @@ abstract class queryhelper
         log::debug("QUERYHELPER: " . $query);
         return $query;
     }
+    public static function QUESTION_BY_RANDOM(): string {
+        $query = "SELECT * FROM ".quizz_question::TABLE." WHERE area = :area ORDER BY RAND() LIMIT 1;";
+        log::debug("QUERYHELPER: " . $query);
+        return $query;
+    }
 
     public static function QUESTIONS_ALL(): string {
         $query = "SELECT * FROM ".quizz_question::TABLE.";";

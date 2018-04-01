@@ -90,39 +90,7 @@ define('CBW_QUIZZ', TRUE);
     <!--START QUIZZ-->
     <div id="quizz" class="row">
         <section id="content" class="col-md-8 col-sm-12">
-            <div id="quizz_title" class="col-12">Dies ist ein Titel der Frage</div>
-            <div id="quizz_question" class="col-12">Wer ist doof?</div>
-            <div id="quizz_answers" class="col-12">
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        Antwort 1, dies ist ein langer Text der die Antwort Möglichkeit 1 ist.
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" value="" id="defaultCheck2">
-                    <label class="form-check-label" for="defaultCheck2">
-                        Antwort 2, dies ist ein langer Text der die Antwort Möglichkeit 2 ist. Antwort 2, dies ist ein langer Text der die Antwort Möglichkeit 2 ist. Antwort 2, dies ist ein langer Text der die Antwort Möglichkeit 2 ist.
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" value="" id="defaultCheck3">
-                    <label class="form-check-label" for="defaultCheck3">
-                        Antwort 3, dies ist ein langer Text der die Antwort Möglichkeit 3 ist.
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" value="" id="defaultCheck4">
-                    <label class="form-check-label" for="defaultCheck4">
-                        Antwort 4, dies ist ein langer Text der die Antwort Möglichkeit 4 ist.
-                    </label>
-                </div>
-            </div>
-            <div id="quizz_controls" class="col-12">
-                <button type="button" id="check_question" class="btn btn-success float-right">Antwort abgeben</button>
-                <button type="button" id="check_question" class="btn btn-primary float-right d-none">Nächste Frage</button>
-                <button type="button" class="btn btn-info">Hinweis</button>
-            </div>
+            <button id="start_quizz" class="btn btn-primary">Start Quizz</button>
         </section>
         <aside id="stats" class="col-md-4 col-sm-12">Stats</aside>
     </div>

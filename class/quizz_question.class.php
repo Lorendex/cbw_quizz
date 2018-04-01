@@ -91,8 +91,15 @@ class quizz_question implements db_entry
     public function setQuestionText(string $question_text): void {
         $this->question_text = $question_text;
     }
+    public function generateHTML(){
+        $template = file_get_contents("template/quizz/question.template.html");
+        $template = str_replace("{title}", $this->getQuestionTitle(), $template);
+        $template = str_replace("{question}", $this->getQuestionText(), $template);
+        $template = str_replace("{answers}", $this->generateAnswerHTML(), $template);
+        return $template;
+    }
 
-    public function generateAnswerHTML(){
+    private function generateAnswerHTML(){
         $answers = [];
         if($this->type === quizz_question_type::Select){
             $template = file_get_contents("template/quizz/question.select.template.html");
@@ -204,5 +211,13 @@ class quizz_question implements db_entry
         // TODO: Implement create() method.
     }
 
+    public static function randomQuestion($area = 1): quizz_question {
+        $db = db::getInstance()->getConnection();
+        $stmt = $db->prepare(queryhelper::QUESTION_BY_RANDOM());
+        $stmt->bindParam(":area", $area);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        return is_array($result) ? quizz_question::fromDB($result) : null;
+    }
 
 }

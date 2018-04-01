@@ -29,5 +29,19 @@ $(document).ready(function () {
             });
     });
 
+    // Next question
+    $('#start_quizz').click(function () {
+        getNextQuestion();
+    });
 
 });
+
+function getNextQuestion(){
+    $.get("api.php", {action: "nextquestion"})
+        .done(function (data) {
+            $('#content').replaceWith(data);
+            $('#next_question').click(function () {
+                getNextQuestion();
+            });
+        });
+}

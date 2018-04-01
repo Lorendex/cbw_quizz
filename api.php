@@ -24,5 +24,11 @@ switch (strtolower($action)){
         echo "OK";
     } break;
 
+    case "nextquestion": {
+        //todo: check current quizz type
+        $question = quizz_question::randomQuestion();
+        echo $question->generateHTML();
+    } break;
+
     default: echo "ERROR:UNKNOWN_ACTION"; break;
 }
