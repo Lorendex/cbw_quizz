@@ -85,13 +85,18 @@ class quizz_answer implements db_entry
      * @return quizz_answer[] | null
      */
     public static function findByQuestionID(int $qid): array {
-        if(empty($id)) return null;
+        if(empty($qid)) return null;
         $db = db::getInstance()->getConnection();
-        $stmt = $db->prepare(queryhelper::QUESTION_BY_ID());
-        $stmt->bindParam(":id", $id);
+        $stmt = $db->prepare(queryhelper::ANSWERS_BY_QUESTION_ID());
+        $stmt->bindParam(":qid", $qid);
         $stmt->execute();
-        $result = $stmt->fetch();
-        return is_array($result) ? new quizz_question($result) : null;
+        $result = $stmt->fetchAll();
+        if(!is_array($result)) return null;
+        $anwers = [];
+        foreach($result as $a) {
+            $anwers[] = quizz_answer::fromDB($a);
+        }
+        return $anwers;
     }
 
     /**
@@ -138,7 +143,13 @@ class quizz_answer implements db_entry
      * @return quizz_answer
      */
     public static function fromDB(array $data): quizz_answer {
-        // TODO: Implement fromDB() method.
+        if(!is_array($data)) return null;
+        $inst = new self();
+        $inst->setId($data["ID"]);
+        $inst->setQuestionId($data["qID"]);
+        $inst->setText($data["answer_text"]);
+        $inst->setCorrect($data["correct"]);
+        return $inst;
     }
 
 

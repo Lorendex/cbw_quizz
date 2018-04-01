@@ -94,25 +94,25 @@ define('CBW_QUIZZ', TRUE);
             <div id="quizz_question" class="col-12">Wer ist doof?</div>
             <div id="quizz_answers" class="col-12">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <input class="form-check-input" type="radio" value="" id="defaultCheck1">
                     <label class="form-check-label" for="defaultCheck1">
                         Antwort 1, dies ist ein langer Text der die Antwort Möglichkeit 1 ist.
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                    <input class="form-check-input" type="radio" value="" id="defaultCheck2">
                     <label class="form-check-label" for="defaultCheck2">
                         Antwort 2, dies ist ein langer Text der die Antwort Möglichkeit 2 ist. Antwort 2, dies ist ein langer Text der die Antwort Möglichkeit 2 ist. Antwort 2, dies ist ein langer Text der die Antwort Möglichkeit 2 ist.
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
+                    <input class="form-check-input" type="radio" value="" id="defaultCheck3">
                     <label class="form-check-label" for="defaultCheck3">
                         Antwort 3, dies ist ein langer Text der die Antwort Möglichkeit 3 ist.
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
+                    <input class="form-check-input" type="radio" value="" id="defaultCheck4">
                     <label class="form-check-label" for="defaultCheck4">
                         Antwort 4, dies ist ein langer Text der die Antwort Möglichkeit 4 ist.
                     </label>

@@ -29,6 +29,13 @@ class quizz_question implements db_entry
     public function __construct() {
     }
 
+    /**
+     * @return int
+     */
+    public function getId(): int {
+        return $this->id;
+    }
+
 
     /** @param int $id */
     public function setId(int $id): void {
@@ -47,7 +54,7 @@ class quizz_question implements db_entry
 
     /** @return quizz_answer[] */
     public function getAnswers(): array {
-        return $this->answers;
+        return quizz_answer::findByQuestionID($this->getId());
     }
 
     /** @param quizz_answer[] $answers */
@@ -85,6 +92,46 @@ class quizz_question implements db_entry
         $this->question_text = $question_text;
     }
 
+    public function generateAnswerHTML(){
+        $answers = [];
+        if($this->type === quizz_question_type::Select){
+            $template = file_get_contents("template/quizz/question.select.template.html");
+            foreach($this->getAnswers() as $k => $v) {
+                /**
+                 * @var $k int
+                 * @var $v quizz_answer
+                 */
+                $current = str_replace("{answer_text}", $v->getText(), $template);
+                $current = str_replace("{anwser_checkbox_id}", "answer_".$k, $current);
+                $current = str_replace("{answer_val}", $v->getId(), $current);
+                $answers[] = $current;
+            }
+        }
+
+        if($this->type === quizz_question_type::Option){
+            $template = file_get_contents("template/quizz/question.option.template.html");
+            foreach($this->getAnswers() as $k => $v) {
+                /**
+                 * @var $k int
+                 * @var $v quizz_answer
+                 */
+                $current = str_replace("{answer_text}", $v->getText(), $template);
+                $current = str_replace("{anwser_checkbox_id}", "answer_".$k, $current);
+                $current = str_replace("{answer_val}", $v->getId(), $current);
+                $current = str_replace("{answer_group}", "answer_".$this->getId(), $current);
+                $answers[] = $current;
+            }
+        }
+
+        # randomize answer order
+        shuffle($answers);
+        $output = "";
+        foreach($answers as $a){
+            $output .= $a . PHP_EOL;
+        }
+        return $output;
+    }
+
     /**
      * @param array $data
      * @return quizz_question
@@ -92,7 +139,7 @@ class quizz_question implements db_entry
     public static function fromDB(array $data): quizz_question{
         if(!is_array($data)) return null;
         $inst = new self();
-        $inst->setId($data["id"]);
+        $inst->setId($data["ID"]);
         $inst->setArea($data["area"]);
         $inst->setType($data["type"]);
         $inst->setQuestionTitle($data["title"]);
@@ -111,7 +158,7 @@ class quizz_question implements db_entry
         $stmt->bindParam(":id", $id);
         $stmt->execute();
         $result = $stmt->fetch();
-        return is_array($result) ? new quizz_question($result) : null;
+        return is_array($result) ? quizz_question::fromDB($result) : null;
     }
 
     /**
