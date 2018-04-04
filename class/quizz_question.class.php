@@ -25,6 +25,18 @@ class quizz_question implements db_entry
     /** @var int */
     private $area;
 
+    /** @var int */
+    private $from_year;
+
+    /** @var bool */
+    private $from_summer;
+
+    /** @var bool */
+    private $deleted;
+
+    /** @var string */
+    private $moreinfo;
+
     /** quizz_question constructor */
     public function __construct() {
     }
@@ -36,7 +48,6 @@ class quizz_question implements db_entry
         return $this->id;
     }
 
-
     /** @param int $id */
     public function setId(int $id): void {
         $this->id = $id;
@@ -44,12 +55,12 @@ class quizz_question implements db_entry
 
     /** @return string */
     public function getQuestionTitle(): string {
-        return $this->question_title;
+        return "" . $this->question_title;
     }
 
     /** @param string $question_title */
     public function setQuestionTitle(string $question_title): void {
-        $this->question_title = $question_title;
+        $this->question_title = "" . $question_title;
     }
 
     /** @return quizz_answer[] */
@@ -91,6 +102,71 @@ class quizz_question implements db_entry
     public function setQuestionText(string $question_text): void {
         $this->question_text = $question_text;
     }
+
+    /**
+     * @return int
+     */
+    public function getFromYear(): int {
+        return $this->from_year;
+    }
+
+    /**
+     * @param int $from_year
+     */
+    public function setFromYear(int $from_year): void {
+        $this->from_year = $from_year;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFromSummer(): bool {
+        return $this->from_summer;
+    }
+
+    /**
+     * @return int
+     */
+    public function isFromSummerInt(): int {
+        return $this->from_summer ? 1 : 0;
+    }
+    /**
+     * @param bool $from_summer
+     */
+    public function setFromSummer(bool $from_summer): void {
+        $this->from_summer = $from_summer;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMoreinfo(): string {
+        return $this->moreinfo;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDeleted(): bool {
+        return $this->deleted;
+    }
+
+    /**
+     * @param bool $deleted
+     */
+    public function setDeleted(bool $deleted): void {
+        $this->deleted = $deleted;
+    }
+
+    /**
+     * @param string $moreinfo
+     */
+    public function setMoreinfo(string $moreinfo): void {
+        $this->moreinfo = $moreinfo;
+    }
+
+
+
     public function generateHTML(){
         $template = file_get_contents("template/quizz/question.template.html");
         $template = str_replace("{title}", $this->getQuestionTitle(), $template);
@@ -154,6 +230,10 @@ class quizz_question implements db_entry
         $inst->setType($data["type"]);
         $inst->setQuestionTitle($data["title"]);
         $inst->setQuestionText($data["question"]);
+        $inst->setFromSummer(boolval($data["summer"]));
+        $inst->setFromYear($data["from_year"]);
+        $inst->setMoreinfo($data["moreinfo"]);
+        $inst->setDeleted(boolval($data["deleted"]));
         return $inst;
     }
 
@@ -178,8 +258,12 @@ class quizz_question implements db_entry
         $db = db::getInstance()->getConnection();
         $stmt = $db->prepare(queryhelper::QUESTIONS_ALL());
         $stmt->execute();
-        $result = $stmt->fetchAll();
-        return is_array($result) ? new quizz_question($result) : null;
+        $temp_res = $stmt->fetchAll();
+        $result = [];
+        foreach($temp_res as $res) {
+            $result[] = quizz_question::fromDB($res);
+        }
+        return $result;
     }
 
     /**
@@ -211,7 +295,24 @@ class quizz_question implements db_entry
      * @return quizz_question
      */
     public static function create($obj): quizz_question {
-        // TODO: Implement create() method.
+        $db = db::getInstance()->getConnection();
+        $stmt = $db->prepare(queryhelper::QUESTION_CREATE());
+        if(empty($obj->question_title)) {
+            $obj->question_title = "" . $obj->from_year;
+            $obj->question_title.= $obj->from_summer ? " Sommer" : " Winter";
+        }
+        $summer = $obj->isFromSummerInt();
+        $stmt->bindParam(":title", $obj->question_title );
+        $stmt->bindParam(":question_text", $obj->question_text);
+        $stmt->bindParam(":type", $obj->type);
+        $stmt->bindParam(":area", $obj->area);
+        $stmt->bindParam(":summer", $summer);
+        $stmt->bindParam(":from_year", $obj->from_year);
+        $stmt->bindParam(":moreinfo", $obj->moreinfo);
+        $stmt->execute();
+
+        $id = $db->lastInsertId();
+        return quizz_question::findByID($id);
     }
 
     public static function randomQuestion($area = 1): quizz_question {
@@ -220,7 +321,7 @@ class quizz_question implements db_entry
         $stmt->bindParam(":area", $area);
         $stmt->execute();
         $result = $stmt->fetch();
-        return is_array($result) ? quizz_question::fromDB($result) : null;
+        return is_array($result) ? quizz_question::fromDB($result) : die("No question found!");
     }
 
 }

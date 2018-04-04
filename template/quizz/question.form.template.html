@@ -1,0 +1,67 @@
+<section id="content" class="col-md-12 col-sm-12">
+    <div id="question_form">
+        <div class="question_form_row">
+            <label for="question_text">Frage:</label>
+            <div><input id="question_text" placeholder="Warum ist 1 > 2?" type="text"></div>
+            {edit_question}
+        </div>
+        <div class="question_form_row">
+            <label for="question_title">Titel (Optional):</label>
+            <div><input id="question_title" placeholder="Optionaler Titel, leer lassen für Standard Titel" type="text"></div>
+            {edit_question}
+        </div>
+        <div class="question_form_row">
+            <label for="question_year">Jahr:</label>
+            <div>
+                <input id="question_year" type="number" value="2018" max="2018" min="1990">
+                <label for="question_summer"><input id="question_summer" type="checkbox" value="1"> Sommer</label>
+            </div>
+        </div>
+
+        <div class="question_form_row">
+            <label for="area">Bereich:</label>
+            <div>
+                <select id="area">
+                    <option value="1" selected="selected">WISO</option>
+                    <option value="2">KERN1</option>
+                    <option value="3">KERN2</option>
+                </select>
+            </div>
+        </div>
+        <div class="question_form_row">
+            <label for="type">Frage-Typ:</label>
+            <div>
+                <select id="type">
+                    <option value="1" selected="selected">Mehrfachauswahl [Checkboxen]</option>
+                    <option value="2">Einzelauswahl [Radio]</option>
+                </select>
+            </div>
+        </div>
+        <div class="question_form_row">
+            <label for="moreinfo">Weitere Information:</label>
+            <div><input id="moreinfo" type="text" placeholder="z.B. Handschlungsschitt 3 Aufgabe 4ac (Optional)"></div>
+        </div>
+        <hr>
+        <div class="question_form_row">
+            <label for="num_answer">Anzahl Antworten:</label>
+            <div>
+                <div id="question_form_info_text">Hinweis: Verringern der Anzahl kann eine Antwort aus dem Formular löschen.</div>
+                <input type="number" id="num_answer" min="2" max="20" value="4">
+            </div>
+        </div>
+        <hr>
+        <div class="answers">
+            <div class="answer_row answer_template d-none" id="{num}">
+                <label for="answer_{num}">Antwort {num_add_one}:</label>
+                <div><input type="text" id="answer_{num}" placeholder="Antwort {num_add_one}">
+                    <label for="correct_{num}"><input type="checkbox" value="1" id="correct_{num}"> Richtig</label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="question_form_row" id="question_form_controls">
+        <button id="submit_form" class="btn btn-success">Speichern</button>
+        <button id="cancel_form" class="btn btn-danger">Abbrechen</button>
+    </div>
+</section>

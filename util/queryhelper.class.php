@@ -46,6 +46,13 @@ abstract class queryhelper
         return $query;
     }
 
+    public static function QUESTION_CREATE(): string {
+        $query = "INSERT INTO ".quizz_question::TABLE." (ID, title, question, type, area, summer, from_year, moreinfo, deleted)";
+        $query.= "VALUES (NULL, :title, :question_text, :type, :area, :summer, :from_year, :moreinfo, 0);";
+        log::debug("QUERYHELPER: " . $query);
+        return $query;
+    }
+
     /******************************************** ANSWER QUERYS *******************************************************/
     public static function ANSWER_BY_ID(): string {
         $query = "SELECT * FROM ".quizz_answer::TABLE." WHERE ID = :id;";
@@ -55,6 +62,13 @@ abstract class queryhelper
 
     public static function ANSWERS_BY_QUESTION_ID(): string {
         $query = "SELECT * FROM ".quizz_answer::TABLE." WHERE qID = :qid;";
+        log::debug("QUERYHELPER: " . $query);
+        return $query;
+    }
+
+    public static function ANSWER_CREATE(): string {
+        $query = "INSERT INTO ".quizz_answer::TABLE." (ID, qID, answer_text, correct)";
+        $query.= "VALUES (NULL, :qid, :answer_text, :correct);";
         log::debug("QUERYHELPER: " . $query);
         return $query;
     }

@@ -14,9 +14,13 @@ CREATE TABLE IF NOT EXISTS quizz_questions (
   question text NOT NULL,
   type tinyint(4) NOT NULL,
   area tinyint(4) NOT NULL,
+  summer tinyint(1) NOT NULL,
+  from_year smallint(6) NOT NULL,
+  moreinfo varchar(10000) NOT NULL,
   PRIMARY KEY (ID),
   KEY type (type),
-  KEY area (area)
+  KEY area (area),
+  KEY from_year (from_year)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS quizz_answers (

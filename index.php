@@ -39,25 +39,25 @@ define('CBW_QUIZZ', TRUE);
             <li class="nav-item">
                 <a class="nav-link" href="index.php">Home</a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="javascript:;" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Quizz Typ</a>
-                <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="javascript:;">WISO</a>
-                    <a class="dropdown-item" href="javascript:;">KERN 1</a>
-                    <a class="dropdown-item" href="javascript:;">KERN 2</a>
-                </div>
+            <li class="nav-item">
+                <a class="nav-link" id="quizz_wiso" href="#">WISO</a>
             </li>
             <li class="nav-item disabled d-none">
-                <a class="nav-link" href="#">Klassen Quizz</a>
+                <a class="nav-link" id="cards_list" href="#">Karteikarten</a>
             </li>
         </ul>
         <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="#">RESET</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="javascript:;" id="navbarDropdownAdmin " role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
+                <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" id="nav_admin_question" href="javascript:;">Fragen</a>
+                    <a class="dropdown-item" id="nav_admin_cards" href="javascript:;">Karten</a>
+                </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Admin</a>
+                <a class="nav-link disabled" href="#">RESET</a>
             </li>
+
         </ul>
     </div>
 </nav>
@@ -98,9 +98,9 @@ define('CBW_QUIZZ', TRUE);
 </main>
 <!--END CONTENT-->
 <!--START LOG-->
-<div id="toggle_git" class="btn btn-outline-info btn-sm"><?php echo exec('git rev-parse --short HEAD'); ?></div>
-<div id="toggle_log" class="btn btn-outline-info btn-sm">Log</div>
 <pre id="log" class="d-none container"><?php foreach (array_reverse(log::getInstance()->getMessages()) as $msg) { echo $msg; }?></pre>
+<div id="toggle_git" class="btn btn-outline-info btn-sm visible-xs-block">Version: <?php echo exec('git rev-parse --short HEAD'); ?></div>
+<div id="toggle_log" class="btn btn-outline-info btn-sm visible-xs-block">Log</div>
 <!--END LOG-->
 <script src="js/cbw.quizz.js"></script>
 </body>

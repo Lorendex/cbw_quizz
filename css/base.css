@@ -43,6 +43,9 @@ body {
 .bg-dark a.dropdown-item {
     color: #fff;
 }
+.bg-dark .dropdown-item:focus, .bg-dark .dropdown-item:hover {
+    background-color: #343a40;
+}
 #toggle_git,
 #toggle_log {
     position: fixed;
@@ -61,8 +64,65 @@ body {
 #quizz_controls #check_question {
     margin-left: 10px;
 }
-@media (max-width: 1199px) {
+#question_admin_list table th.tbl_row_1 {
+    width: 22px;
+}
+#question_admin_list table th.tbl_row_2 {
+     width: 50px;
+}
+#question_admin_list table td.tbl_row_2 {
+    text-align: right;
+}
+#question_admin_list table th.tbl_row_4 {
+    width: 140px;
+}
+#question_admin_list table th.tbl_row_5 {
+    width: 90px;
+}
+#question_form .question_form_row > label,
+#question_form .answer_row > label {
+    width: 20%;
+    display: inline-block;
+    text-align: right;
+}
+#question_form .question_form_row > div,
+#question_form .answer_row > div{
+    width: 75%;
+    display: inline-block;
+}
+#question_form .question_form_row #question_text,
+#question_form .question_form_row #moreinfo,
+#question_form .question_form_row #question_title,
+#question_form .answer_row input[type="text"] {
+    width: 80%;
+}
 
+#question_form label.has_error {
+    border-color: #dc3545;
+    border-style: solid;
+    border-width: 1px;
+    color: #dc3545;
+}
+
+#question_form #question_form_info_text {
+    font-size: 12px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #17a2b8;
+}
+
+#question_form_controls {
+    text-align: center;
+    margin: 10px 0;
+}
+@media (max-width: 1199px) {
+    #toggle_git, #toggle_log {
+        position: relative;
+        bottom: unset;
+        right: unset;
+        float:right;
+        margin-right: 10px;
+    }
 }
 @media (max-width: 991px) {
 
@@ -76,8 +136,23 @@ body {
     #main_content {
         width: 96%;
     }
+
+    #ask_user_name button,
+    #quizz_controls button {
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+    }
+    #question_btn_group button{
+        display: block;
+        width: 100%;
+        margin-bottom: 5px;
+    }
 }
 
 @media (max-width: 575px) {
-
+    .btn-group.btn-group-justified > button.btn {
+        display: block;
+        width: 100%;
+    }
 }

@@ -15,6 +15,8 @@ class quizz_answer implements db_entry
     private $text;
     /** @var bool */
     private $correct;
+    /** @var bool */
+    private $deleted;
 
     /**
      * @return int
@@ -71,13 +73,32 @@ class quizz_answer implements db_entry
     public function setCorrect(bool $correct): void {
         $this->correct = $correct;
     }
+    /**
+     * @return bool
+     */
+    public function isDeleted(): bool {
+        return $this->deleted;
+    }
+
+    /**
+     * @param bool $deleted
+     */
+    public function setDeleted(bool $deleted): void {
+        $this->deleted = $deleted;
+    }
 
     /**
      * @param int $id
      * @return quizz_answer | null
      */
     public static function findByID(int $id): quizz_answer {
-        // TODO: Implement findByID() method.
+        if(empty($id)) return null;
+        $db = db::getInstance()->getConnection();
+        $stmt = $db->prepare(queryhelper::ANSWER_BY_ID());
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        return is_array($result) ? quizz_answer::fromDB($result) : null;
     }
 
     /**
@@ -131,11 +152,19 @@ class quizz_answer implements db_entry
     }
 
     /**
-     * @param $obj
+     * @param $obj quizz_answer
      * @return quizz_answer
      */
     public static function create($obj): quizz_answer {
-        // TODO: Implement create() method.
+        $db = db::getInstance()->getConnection();
+        $stmt = $db->prepare(queryhelper::ANSWER_CREATE());
+        $correct = $obj->correct ? 1 : 0;
+        $stmt->bindParam(":qid", $obj->question_id);
+        $stmt->bindParam(":answer_text", $obj->text);
+        $stmt->bindParam(":correct", $correct);
+        $stmt->execute();
+        $id = $db->lastInsertId();
+        return quizz_answer::findByID($id);
     }
 
     /**
